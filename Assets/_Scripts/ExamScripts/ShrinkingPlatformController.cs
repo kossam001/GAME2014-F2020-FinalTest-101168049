@@ -28,12 +28,17 @@ public class ShrinkingPlatformController : MonoBehaviour
     public float shrinkMultiplier = 1;
     public bool isShrinking = false;
 
+    public AudioClip growSound;
+    public AudioClip shrinkSound;
+
     private float maxWidth;
     private float width;
     private float timer = 0;
+    private AudioSource sounds;
 
     private void Start()
     {
+        sounds = GetComponent<AudioSource>();
         maxWidth = width = transform.localScale.x;
     }
 
@@ -42,6 +47,10 @@ public class ShrinkingPlatformController : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             isShrinking = true;
+
+            // So it plays once
+            sounds.clip = shrinkSound;
+            sounds.Play();
         }
     }
 
@@ -50,6 +59,10 @@ public class ShrinkingPlatformController : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             isShrinking = false;
+
+            // So it plays once
+            sounds.clip = growSound;
+            sounds.Play();
         }
     }
 
@@ -95,6 +108,10 @@ public class ShrinkingPlatformController : MonoBehaviour
         {
             width = 0; // Round the width to 0
             isShrinking = false;
+
+            // So it plays once
+            sounds.clip = growSound;
+            sounds.Play();
         }
         else if (width > maxWidth)
         {
