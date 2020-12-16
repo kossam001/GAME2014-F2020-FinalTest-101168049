@@ -20,31 +20,62 @@ public class ShrinkingPlatformController : MonoBehaviour
     public bool isShrinking = false;
 
     private float width;
-    private float timer = 0;
+    public float timer = 0;
 
     private void Start()
     {
         maxWidth = width = transform.localScale.x;
     }
 
-    private void OnCollisionStay2D(Collision2D other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Shrink();
+            isShrinking = true;
         }
     }
 
-    void Shrink()
+    private void OnCollisionExit2D(Collision2D other)
     {
-        if (width >= 0)
+        if (other.gameObject.CompareTag("Player"))
         {
-            width = Mathf.Lerp(maxWidth, 0.0f, timer / maxSizeChangeDuration);
+            isShrinking = false;
+        }
+    }
+
+    private void Update()
+    {
+        if (width < maxWidth || isShrinking)
+        {
+            ChangeSize(0.0f, maxWidth);
+        }
+        else
+        {
+            timer = 0;
+        }
+    }
+
+    void ChangeSize(float from, float to)
+    {
+        width = Mathf.Lerp(maxWidth, 0.0f, timer / maxSizeChangeDuration);
+
+        if (isShrinking)
+        {
             timer += Time.deltaTime;
         }
         else
         {
+            timer -= Time.deltaTime;
+        }
+
+        if (width < 0)
+        {
             width = 0;
+            isShrinking = false;
+        }
+        else if (width > maxWidth)
+        {
+            width = maxWidth;
         }
 
         transform.localScale = new Vector3(width, transform.localScale.y);
