@@ -15,12 +15,14 @@ using UnityEngine;
 
 public class ShrinkingPlatformController : MonoBehaviour
 {
-    public float maxWidth;
-    public float maxSizeChangeDuration = 2;
+    public float duration = 2;
+    public float growthMultiplier = 1;
+    public float shrinkMultiplier = 1;
     public bool isShrinking = false;
 
+    private float maxWidth;
     private float width;
-    public float timer = 0;
+    private float timer = 0;
 
     private void Start()
     {
@@ -47,7 +49,14 @@ public class ShrinkingPlatformController : MonoBehaviour
     {
         if (width < maxWidth || isShrinking)
         {
-            ChangeSize(0.0f, maxWidth);
+            if (isShrinking)
+            {
+                ChangeSize(shrinkMultiplier);
+            }
+            else
+            {
+                ChangeSize(growthMultiplier);
+            }
         }
         else
         {
@@ -55,20 +64,20 @@ public class ShrinkingPlatformController : MonoBehaviour
         }
     }
 
-    void ChangeSize(float from, float to)
+    void ChangeSize(float multiplier)
     {
-        width = Mathf.Lerp(maxWidth, 0.0f, timer / maxSizeChangeDuration);
+        width = Mathf.Lerp(maxWidth, 0.0f, timer / duration);
 
         if (isShrinking)
         {
-            timer += Time.deltaTime;
+            timer += Time.deltaTime * multiplier;
         }
         else
         {
-            timer -= Time.deltaTime;
+            timer -= Time.deltaTime * multiplier;
         }
 
-        if (width < 0)
+        if (width <= 0)
         {
             width = 0;
             isShrinking = false;
