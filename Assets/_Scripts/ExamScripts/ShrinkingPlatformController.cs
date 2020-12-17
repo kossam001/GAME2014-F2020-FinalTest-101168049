@@ -12,6 +12,7 @@
  * 2020-12-16: Added sections to stop timer so that shrinking and growing happens without too much delay.
  * 2020-12-16: Fixed bug where shrinking to width 0 no longer grows.
  * 2020-12-16: Added growth/shrink speed modifiers.
+ * 2020-12-16: Added sounds when platform begins shrinking and growing.
  */ 
 
 using System.Collections;

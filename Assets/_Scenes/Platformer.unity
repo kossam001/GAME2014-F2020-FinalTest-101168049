@@ -14711,8 +14711,8 @@ GameObject:
   - component: {fileID: 875368162}
   - component: {fileID: 875368161}
   - component: {fileID: 875368160}
-  - component: {fileID: 875368159}
   - component: {fileID: 875368164}
+  - component: {fileID: 875368159}
   m_Layer: 8
   m_Name: FloatingPlatform1
   m_TagString: Untagged
@@ -14747,7 +14747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f058e1ed63a3349468269d4322d869f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 2
+  duration: 2.5
   growthMultiplier: 1
   shrinkMultiplier: 1
   isShrinking: 0
@@ -22881,8 +22881,8 @@ GameObject:
   - component: {fileID: 1511121644}
   - component: {fileID: 1511121643}
   - component: {fileID: 1511121642}
-  - component: {fileID: 1511121641}
   - component: {fileID: 1511121640}
+  - component: {fileID: 1511121641}
   m_Layer: 8
   m_Name: FloatingPlatform2
   m_TagString: Untagged
@@ -22998,7 +22998,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f058e1ed63a3349468269d4322d869f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 2
+  duration: 2.5
   growthMultiplier: 1
   shrinkMultiplier: 1
   isShrinking: 0
